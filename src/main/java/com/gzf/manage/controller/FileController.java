@@ -7,6 +7,7 @@ import com.gzf.manage.utils.FileUploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,7 +28,8 @@ public class FileController {
      * 通用上传请求
      */
     @PostMapping("/common/upload")
-    public AjaxResult uploadFile(MultipartFile file,String fileRealName) {
+    public AjaxResult uploadFile(@RequestParam("file") MultipartFile file,
+                                 @RequestParam("fileRealName") String fileRealName) {
         try {
             // 上传文件路径
             String filePath = GzfConfig.getUploadPath();
