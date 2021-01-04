@@ -4,6 +4,7 @@ package com.gzf.manage.exception;
 import com.gzf.manage.utils.MessageGlobalUtils;
 import com.gzf.manage.utils.StringUtils;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * 基础异常
@@ -11,6 +12,7 @@ import lombok.Data;
  * @author gzf
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class BaseException extends RuntimeException {
 
     /**
@@ -70,3 +72,4 @@ public class BaseException extends RuntimeException {
         return message;
     }
 }
+

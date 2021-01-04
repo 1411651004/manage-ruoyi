@@ -3,7 +3,9 @@ gzf:
   # 验证码类型 math 数组计算 char 字符验证
   captchaType: math
   # 文件路径 示例（ Windows配置D:/ruoyi/uploadPath，Linux配置 /home/ruoyi/uploadPath）
-  profile: /Users/gzf/home/uploadPath
+  profile: D:/uploadPath
+  #linux环境下
+  #profile: /Users/gzf/home/uploadPath
 
 # 开发环境配置
 server:
@@ -42,6 +44,14 @@ spring:
        max-request-size:  20MB
   # 服务模块
 
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://39.105.31.111:3306/manage?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+
   # redis 配置
   redis:
     # 地址
@@ -75,20 +85,23 @@ spring:
 #    expireTime: 30
   
 # MyBatis配置
-#mybatis:
-#    # 搜索指定包别名
-#    typeAliasesPackage: com.ruoyi.**.domain
-#    # 配置mapper的扫描，找到所有的mapper.xml映射文件
-#    mapperLocations: classpath*:mapper/**/*Mapper.xml
-#    # 加载全局的配置文件
-#    configLocation: classpath:mybatis/mybatis-config.xml
+mybatis:
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapper-locations: classpath:mappers/*.xml
+  # 搜索指定包别名
+  type-aliases-package: com.gzf.manage.entry
+  # 加载全局的配置文件
+  #config-location: classpath:mybatis/mybatis-config.xml
+  configuration:
+    # 开启驼峰映射
+    map-underscore-to-camel-case: true
 
 # PageHelper分页插件
-#pagehelper:
-#  helperDialect: mysql
-#  reasonable: true
-#  supportMethodsArguments: true
-#  params: count=countSql
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
 
 # Swagger配置
 

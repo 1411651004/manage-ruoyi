@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gzf.manage.dao.SysBtnColMapper">
+    <resultMap id="BaseResultMap" type="com.gzf.manage.entry.SysBtnCol">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="sys_name" jdbcType="VARCHAR" property="sysName"/>
+        <result column="btn_name" jdbcType="VARCHAR" property="btnName"/>
+        <result column="btn_size" jdbcType="VARCHAR" property="btnSize"/>
+        <result column="btn_logo" jdbcType="VARCHAR" property="btnLogo"/>
+        <result column="background_color" jdbcType="VARCHAR" property="backgroundColor"/>
+        <result column="trigger_event" jdbcType="VARCHAR" property="triggerEvent"/>
+        <result column="notes" jdbcType="VARCHAR" property="notes"/>
+        <result column="link" jdbcType="VARCHAR" property="link"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.gzf.manage.entry.SysBtnCol">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into sys_btn_col (sys_name, btn_name, btn_size,
+        btn_logo, background_color, trigger_event,
+        notes, link)
+        values (#{sysName,jdbcType=VARCHAR}, #{btnName,jdbcType=VARCHAR}, #{btnSize,jdbcType=VARCHAR},
+        #{btnLogo,jdbcType=VARCHAR}, #{backgroundColor,jdbcType=VARCHAR}, #{triggerEvent,jdbcType=VARCHAR},
+        #{notes,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.gzf.manage.entry.SysBtnCol">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into sys_btn_col
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sysName != null">
+                sys_name,
+            </if>
+            <if test="btnName != null">
+                btn_name,
+            </if>
+            <if test="btnSize != null">
+                btn_size,
+            </if>
+            <if test="btnLogo != null">
+                btn_logo,
+            </if>
+            <if test="backgroundColor != null">
+                background_color,
+            </if>
+            <if test="triggerEvent != null">
+                trigger_event,
+            </if>
+            <if test="notes != null">
+                notes,
+            </if>
+            <if test="link != null">
+                link,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sysName != null">
+                #{sysName,jdbcType=VARCHAR},
+            </if>
+            <if test="btnName != null">
+                #{btnName,jdbcType=VARCHAR},
+            </if>
+            <if test="btnSize != null">
+                #{btnSize,jdbcType=VARCHAR},
+            </if>
+            <if test="btnLogo != null">
+                #{btnLogo,jdbcType=VARCHAR},
+            </if>
+            <if test="backgroundColor != null">
+                #{backgroundColor,jdbcType=VARCHAR},
+            </if>
+            <if test="triggerEvent != null">
+                #{triggerEvent,jdbcType=VARCHAR},
+            </if>
+            <if test="notes != null">
+                #{notes,jdbcType=VARCHAR},
+            </if>
+            <if test="link != null">
+                #{link,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateSelective">
+        update sys_btn_col
+        <trim prefix="set" suffixOverrides=",">
+
+            <if test="sysName != null and sysName != ''">
+                sys_name = #{sysName},
+            </if>
+            <if test="btnName != null and btnName != ''">
+                btn_name = #{btnName},
+            </if>
+            <if test="btnSize != null and btnSize != ''">
+                btn_size = #{btnSize},
+            </if>
+            <if test="btnLogo != null and btnLogo != ''">
+                btn_logo = #{btnLogo},
+            </if>
+            <if test="backgroundColor != null and backgroundColor != ''">
+                background_color = #{backgroundColor},
+            </if>
+            <if test="triggerEvent != null and triggerEvent != ''">
+                trigger_event = #{triggerEvent},
+            </if>
+            <if test="notes != null and notes != ''">
+                notes = #{notes},
+            </if>
+            <if test="link != null and link != ''">
+                link = #{link},
+            </if>
+        </trim>
+            where id = #{id}
+    </update>
+    <delete id="deleteById">
+        delete from sys_btn_col where id =#{id}
+    </delete>
+    <select id="queryList" parameterType="com.gzf.manage.entry.SysBtnCol"
+            resultType="com.gzf.manage.entry.SysBtnCol">
+        select * from sys_btn_col
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="sysName != null and sysName != ''">
+                and sys_name = #{sysName}
+            </if>
+            <if test="btnName != null and btnName != ''">
+                and btn_name = #{btnName}
+            </if>
+            <if test="btnSize != null and btnSize != ''">
+                and btn_size = #{btnSize}
+            </if>
+            <if test="btnLogo != null and btnLogo != ''">
+                and btn_logo = #{btnLogo}
+            </if>
+            <if test="backgroundColor != null and backgroundColor != ''">
+                and background_color = #{backgroundColor}
+            </if>
+            <if test="triggerEvent != null and triggerEvent != ''">
+                and trigger_event = #{triggerEvent}
+            </if>
+            <if test="notes != null and notes != ''">
+                and notes = #{notes}
+            </if>
+            <if test="link != null and link != ''">
+                and link = #{link}
+            </if>
+        </where>
+    </select>
+</mapper>
