@@ -6,6 +6,7 @@ import com.gzf.manage.common.Constants;
 import com.gzf.manage.utils.Base64;
 import com.gzf.manage.utils.redis.RedisCache;
 import com.gzf.manage.utils.uuid.IdUtils;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.FastByteArrayOutputStream;
@@ -43,6 +44,7 @@ public class CaptchaController {
      * 生成验证码
      */
     @GetMapping("/captchaImage")
+    @ApiOperation(value = "生成验证码")
     public AjaxResult getCode() {
         // 保存验证码信息
         String uuid = IdUtils.simpleUUID();
@@ -64,8 +66,8 @@ public class CaptchaController {
             capStr = code = captchaProducer.createText();
             image = captchaProducer.createImage(capStr);
         }
-        //讲结果放入redis缓存
-        redisCache.setCacheObject(verifyKey,code,Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
+        //将结果放入redis缓存
+        redisCache.setCacheObject(verifyKey, code, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
         try {

@@ -148,4 +148,12 @@
             </if>
         </where>
     </select>
+    <select id="querySysName" resultType="java.lang.String">
+        select sys_name sysName
+        from sys_btn_col
+    </select>
+    <select id="queryBtnName" resultType="java.lang.String">
+        select btn_name btnName
+        from sys_btn_col
+    </select>
 </mapper>

@@ -25,4 +25,16 @@ public interface SysBtnColService {
      * @return
      */
     AjaxResult deleteById(Integer id);
+
+    /**
+     * 查询系统下拉框
+     * @return
+     */
+    AjaxResult querySysName();
+
+    /**
+     * 查询按钮名称下拉框
+     * @return
+     */
+    AjaxResult queryBtnName();
 }

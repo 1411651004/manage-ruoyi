@@ -15,5 +15,18 @@ public interface SysBtnColMapper {
 
     List<SysBtnCol> queryList(SysBtnCol sysBtnCol);
 
+    /**
+     * 查询系统名称下拉框
+     * @return
+     */
+    List<String> querySysName();
+
+    /**
+     * 查询按钮名称下拉框
+     * @return
+     */
+    List<String> queryBtnName();
+
     int deleteById(int id);
+
 }

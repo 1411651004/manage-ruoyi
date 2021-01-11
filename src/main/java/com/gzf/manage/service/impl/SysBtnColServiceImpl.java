@@ -30,8 +30,7 @@ public class SysBtnColServiceImpl implements SysBtnColService {
         PageHelper.startPage(sysBtnCol.getPageIndex(), sysBtnCol.getPageSize());
         List<SysBtnCol> sysBtnCols = sysBtnColMapper.queryList(sysBtnCol);
         PageInfo pageInfo = new PageInfo(sysBtnCols);
-        AjaxResult ajaxResult = new AjaxResult();
-        ajaxResult.success();
+        AjaxResult ajaxResult = AjaxResult.success();
         List<String> title = new ArrayList();
         title.add("系统名称");
         title.add("按钮名称");
@@ -65,6 +64,20 @@ public class SysBtnColServiceImpl implements SysBtnColService {
         }
         sysBtnColMapper.deleteById(id);
         return AjaxResult.success();
+    }
+
+    @Override
+    public AjaxResult querySysName() {
+        return AjaxResult.success(sysBtnColMapper.querySysName());
+    }
+
+    /**
+     * 查询按钮名称下拉框
+     * @return
+     */
+    @Override
+    public AjaxResult queryBtnName() {
+        return AjaxResult.success(sysBtnColMapper.queryBtnName());
     }
 
 
