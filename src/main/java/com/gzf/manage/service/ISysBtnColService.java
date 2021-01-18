@@ -3,7 +3,7 @@ package com.gzf.manage.service;
 import com.gzf.manage.common.AjaxResult;
 import com.gzf.manage.entry.SysBtnCol;
 
-public interface SysBtnColService {
+public interface ISysBtnColService {
 
     /**
      * 查询系统按钮颜色列表

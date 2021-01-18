@@ -2,7 +2,7 @@ package com.gzf.manage.controller;
 
 import com.gzf.manage.common.AjaxResult;
 import com.gzf.manage.entry.SysBtnCol;
-import com.gzf.manage.service.SysBtnColService;
+import com.gzf.manage.service.ISysBtnColService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 public class SysBtnColController {
 
     @Resource
-    private SysBtnColService sysBtnColService;
+    private ISysBtnColService sysBtnColService;
 
     @GetMapping("/querySysBtnCol")
     @ApiOperation(value = "查询系统按钮颜色")

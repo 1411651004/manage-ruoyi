@@ -1,7 +1,9 @@
 package com.gzf.manage.exception;
 
 import com.gzf.manage.common.AjaxResult;
+import com.gzf.manage.utils.StringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * 全局异常处理器
- * 
+ *
  * @author ruoyi
  */
 @RestControllerAdvice
@@ -21,19 +23,31 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(BaseException.class)
     public AjaxResult baseException(BaseException e) {
+        log.error(e.getMessage(), e);
+        return AjaxResult.error(e.getMessage());
+    }
+
+    /**
+     * 登录异常
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public AjaxResult handleUsernameNotFoundException(UsernameNotFoundException e) {
+        log.error(e.getMessage(), e);
         return AjaxResult.error(e.getMessage());
     }
 
     /**
      * 业务异常
      */
-    /*@ExceptionHandler(CustomException.class)
+    @ExceptionHandler(CustomException.class)
     public AjaxResult businessException(CustomException e) {
         if (StringUtils.isNull(e.getCode())) {
             return AjaxResult.error(e.getMessage());
         }
         return AjaxResult.error(e.getCode(), e.getMessage());
-    }*/
+    }
 
     @ExceptionHandler(Exception.class)
     public AjaxResult handleException(Exception e) {

@@ -10,7 +10,7 @@ import com.gzf.manage.entry.FileUpload;
  * @author: Gaozf
  * @Date: 2021/1/7 15:44
  **/
-public interface FileUploadService {
+public interface IFileUploadService {
 
     AjaxResult queryFileList(FileUpload file);
 

@@ -2,11 +2,10 @@ package com.gzf.manage.common;
 
 /**
  * 返回状态码
- * 
- * @author ruoyi
+ *
+ * @author gzf
  */
-public class HttpStatus
-{
+public class HttpStatus {
     /**
      * 操作成功
      */

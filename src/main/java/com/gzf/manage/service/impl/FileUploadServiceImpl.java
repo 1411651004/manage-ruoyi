@@ -7,7 +7,7 @@ import com.gzf.manage.common.Constants;
 import com.gzf.manage.dao.FileUploadMapper;
 import com.gzf.manage.entry.FileUpload;
 import com.gzf.manage.exception.BaseException;
-import com.gzf.manage.service.FileUploadService;
+import com.gzf.manage.service.IFileUploadService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -21,7 +21,7 @@ import java.util.List;
  * @Date: 2021/1/7 15:45
  **/
 @Service
-public class FileUploadServiceImpl implements FileUploadService {
+public class FileUploadServiceImpl implements IFileUploadService {
     @Resource
     FileUploadMapper fileUploadMapper;
 

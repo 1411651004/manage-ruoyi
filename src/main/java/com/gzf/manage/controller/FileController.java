@@ -5,7 +5,7 @@ import com.gzf.manage.common.Constants;
 import com.gzf.manage.config.GzfConfig;
 import com.gzf.manage.config.ServerConfig;
 import com.gzf.manage.entry.FileUpload;
-import com.gzf.manage.service.FileUploadService;
+import com.gzf.manage.service.IFileUploadService;
 import com.gzf.manage.utils.FileUploadUtils;
 import com.gzf.manage.utils.StringUtils;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +32,7 @@ public class FileController {
     @Autowired
     private ServerConfig serverConfig;
     @Autowired
-    private FileUploadService fileUploadService;
+    private IFileUploadService fileUploadService;
     /**
      * 通用上传请求
      */

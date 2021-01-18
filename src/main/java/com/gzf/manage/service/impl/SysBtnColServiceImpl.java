@@ -2,20 +2,21 @@ package com.gzf.manage.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.gzf.manage.annotation.Log;
 import com.gzf.manage.common.AjaxResult;
 import com.gzf.manage.dao.SysBtnColMapper;
 import com.gzf.manage.entry.SysBtnCol;
+import com.gzf.manage.enums.BusinessType;
 import com.gzf.manage.exception.BaseException;
-import com.gzf.manage.service.SysBtnColService;
+import com.gzf.manage.service.ISysBtnColService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Service
-public class SysBtnColServiceImpl implements SysBtnColService {
+public class SysBtnColServiceImpl implements ISysBtnColService {
 
     @Resource
     private SysBtnColMapper sysBtnColMapper;
@@ -26,6 +27,7 @@ public class SysBtnColServiceImpl implements SysBtnColService {
      * @return
      */
     @Override
+    @Log(title = "系统按钮颜色",businessType = BusinessType.OTHER)
     public AjaxResult querySysBtnCol(SysBtnCol sysBtnCol) {
         PageHelper.startPage(sysBtnCol.getPageIndex(), sysBtnCol.getPageSize());
         List<SysBtnCol> sysBtnCols = sysBtnColMapper.queryList(sysBtnCol);

@@ -7,7 +7,14 @@ package com.gzf.manage.common;
  * @create: 2020-12-28 15:00
  **/
 public class Constants {
-
+    /**
+     * UTF-8 字符集
+     */
+    public static final String UTF8 = "UTF-8";
+    /**
+     * GBK 字符集
+     */
+    public static final String GBK = "GBK";
     /**
      * 验证码 redis key
      */
@@ -30,4 +37,21 @@ public class Constants {
      * 文件上传失败
      */
     public static final String UPLOAD_ERROR = "文件上传失败！";
+    /**
+     * 令牌前缀
+     */
+    public static final String LOGIN_USER_KEY = "login_user_key";
+    /**
+     * 登录用户 redis key
+     */
+    public static final String LOGIN_TOKEN_KEY = "login_tokens:";
+    /**
+     * 令牌前缀
+     */
+    public static final String TOKEN_PREFIX = "Bearer ";
+
+    /**
+     * 令牌
+     */
+    public static final String TOKEN = "token";
 }
