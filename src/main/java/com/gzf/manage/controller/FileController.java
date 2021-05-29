@@ -1,10 +1,12 @@
 package com.gzf.manage.controller;
 
+import com.gzf.manage.annotation.Log;
 import com.gzf.manage.common.AjaxResult;
 import com.gzf.manage.common.Constants;
 import com.gzf.manage.config.GzfConfig;
 import com.gzf.manage.config.ServerConfig;
 import com.gzf.manage.entry.FileUpload;
+import com.gzf.manage.enums.BusinessType;
 import com.gzf.manage.service.IFileUploadService;
 import com.gzf.manage.utils.FileUploadUtils;
 import com.gzf.manage.utils.StringUtils;
@@ -38,6 +40,7 @@ public class FileController {
      */
     @PostMapping("/common/upload")
     @ApiOperation(value = "文件上传")
+    @Log(title = "文件上传", businessType = BusinessType.INSERT)
     public AjaxResult uploadFile(@RequestParam("file") MultipartFile file,
                                  @RequestParam("fileRealName") String fileRealName) {
         try {

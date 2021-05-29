@@ -15,6 +15,8 @@ public interface SysBtnColMapper {
 
     List<SysBtnCol> queryList(SysBtnCol sysBtnCol);
 
+    SysBtnCol queryById(Integer id);
+
     /**
      * 查询系统名称下拉框
      * @return

@@ -7,7 +7,7 @@ package com.gzf.manage.exception;
  */
 public class CaptchaExpireException extends BaseException {
 
-    public CaptchaExpireException() {
-        super(null, "user.jcaptcha.expire", null, null);
+    public CaptchaExpireException(String msg) {
+        super(null, msg, null, null);
     }
 }

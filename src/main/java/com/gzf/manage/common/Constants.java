@@ -16,6 +16,15 @@ public class Constants {
      */
     public static final String GBK = "GBK";
     /**
+     * 通用成功标识
+     */
+    public static final String SUCCESS = "0";
+
+    /**
+     * 通用失败标识
+     */
+    public static final String FAIL = "1";
+    /**
      * 验证码 redis key
      */
     public static final String CAPTCHA_CODE_KEY = "captcha_codes:";
@@ -24,7 +33,18 @@ public class Constants {
      * 验证码有效期（分钟）
      */
     public static final Integer CAPTCHA_EXPIRATION = 2;
-
+    /**
+     * 登录成功
+     */
+    public static final String LOGIN_SUCCESS = "Success";
+    /**
+     * 注销
+     */
+    public static final String LOGOUT = "Logout";
+    /**
+     * 登录失败
+     */
+    public static final String LOGIN_FAIL = "Error";
     /**
      * 资源映射路径 前缀
      */

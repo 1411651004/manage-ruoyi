@@ -13,6 +13,13 @@ public interface ISysBtnColService {
     AjaxResult querySysBtnCol(SysBtnCol sysBtnCol);
 
     /**
+     * 根据id查询系统按钮颜色
+     * @param id
+     * @return
+     */
+    AjaxResult querySysBtnColById(Integer id);
+
+    /**
      * 插入和修改
      * @param sysBtnCol
      * @return

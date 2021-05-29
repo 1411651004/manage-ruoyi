@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-public class SysUser {
+public class SysUser extends BaseEntry{
     /** 用户ID */
     //@Excel(name = "用户序号", cellType = ColumnType.NUMERIC, prompt = "用户编号")
     private Long userId;
@@ -27,6 +27,8 @@ public class SysUser {
     //@Excel(name = "用户名称")
     private String nickName;
 
+    /** 用户类型 */
+    private String userType;
     /** 用户邮箱 */
     //@Excel(name = "用户邮箱")
     private String email;
@@ -279,6 +281,15 @@ public class SysUser {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)

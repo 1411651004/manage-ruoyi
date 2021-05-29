@@ -48,6 +48,26 @@ public class SysBtnColServiceImpl implements ISysBtnColService {
     }
 
     @Override
+    @Log(title = "系统按钮颜色",businessType = BusinessType.OTHER)
+    public AjaxResult querySysBtnColById(Integer id) {
+        SysBtnCol sysBtnCols = sysBtnColMapper.queryById(id);
+        System.out.println(sysBtnCols.toString());
+        AjaxResult ajaxResult = AjaxResult.success(sysBtnCols);
+        List<String> title = new ArrayList();
+        title.add("系统名称");
+        title.add("按钮名称");
+        title.add("按钮大小");
+        title.add("按钮图标");
+        title.add("背景颜色");
+        title.add("触发事件");
+        title.add("说明");
+        title.add("链接");
+        ajaxResult.put("title", title);
+
+        return ajaxResult;
+    }
+
+    @Override
     public AjaxResult insertAndUpdateSysBtnCol(SysBtnCol sysBtnCol) {
         if (null == sysBtnCol.getId()) {
             //新增

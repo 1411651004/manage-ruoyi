@@ -156,4 +156,10 @@
         select btn_name btnName
         from sys_btn_col
     </select>
+    <select id="queryById" resultType="com.gzf.manage.entry.SysBtnCol">
+        select id,sys_name, btn_name, btn_size,
+               btn_logo, background_color, trigger_event,
+               notes, link from sys_btn_col
+        where id = #{id}
+    </select>
 </mapper>

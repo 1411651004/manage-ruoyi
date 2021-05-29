@@ -4,8 +4,11 @@ import com.gzf.manage.common.Constants;
 import com.gzf.manage.exception.BaseException;
 import com.gzf.manage.exception.CaptchaExpireException;
 import com.gzf.manage.exception.CustomException;
+import com.gzf.manage.manager.AsyncManager;
+import com.gzf.manage.manager.factory.AsyncFactory;
 import com.gzf.manage.security.usermodel.LoginUser;
 import com.gzf.manage.security.utils.TokenService;
+import com.gzf.manage.utils.MessageGlobalUtils;
 import com.gzf.manage.utils.redis.RedisCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -46,14 +49,16 @@ public class SysLoginService {
         String captcha = redisCache.getCacheObject(verifyKey);
         redisCache.deleteObject(verifyKey);
         if (captcha == null) {
-            //AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.expire")));
-            //throw new BaseException("验证码已失效");
-            throw new BaseException("user.jcaptcha.expire", (Object[]) null);
+            AsyncManager.me().execute(AsyncFactory.recordLogininfor(username,
+                    Constants.LOGIN_FAIL, MessageGlobalUtils.messageConvert("user.jcaptcha.expire")));
+            //("验证码已失效");
+            throw new CaptchaExpireException("user.jcaptcha.expire");
         }
         if (!code.equalsIgnoreCase(captcha)) {
-            //AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, MessageUtils.message("user.jcaptcha.error")));
-            //throw new BaseException("验证码错误");
-            throw new BaseException("user.jcaptcha.error", (Object[]) null);
+            AsyncManager.me().execute(AsyncFactory.recordLogininfor(username,
+                    Constants.LOGIN_FAIL, MessageGlobalUtils.messageConvert("user.jcaptcha.error")));
+            //("验证码错误");
+            throw new CaptchaExpireException("user.jcaptcha.error");
         }
         // 用户验证
         Authentication authentication = null;
@@ -70,7 +75,8 @@ public class SysLoginService {
                 throw new CustomException(e.getMessage());
             }
         }
-        //AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_SUCCESS, MessageUtils.message("user.login.success")));
+        AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_SUCCESS,
+                MessageGlobalUtils.messageConvert("user.login.success")));
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
         // 生成token
         return tokenService.createToken(loginUser);

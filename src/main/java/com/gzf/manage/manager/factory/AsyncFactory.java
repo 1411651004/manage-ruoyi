@@ -1,9 +1,16 @@
 package com.gzf.manage.manager.factory;
 
+import com.gzf.manage.common.Constants;
+import com.gzf.manage.entry.SysLogininfor;
 import com.gzf.manage.entry.SysOperLog;
+import com.gzf.manage.service.ISysLogininforService;
 import com.gzf.manage.service.ISysOperLogService;
+import com.gzf.manage.utils.LogUtils;
+import com.gzf.manage.utils.ServletUtils;
 import com.gzf.manage.utils.ip.AddressUtils;
+import com.gzf.manage.utils.ip.IpUtils;
 import com.gzf.manage.utils.springContext.SpringUtils;
+import eu.bitwalker.useragentutils.UserAgent;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +24,7 @@ import java.util.TimerTask;
  */
 @Slf4j
 public class AsyncFactory {
+    private static final Logger sys_user_logger = LoggerFactory.getLogger("sys-user");
 
     /**
      * 记录登录信息
@@ -27,7 +35,7 @@ public class AsyncFactory {
      * @param args     列表
      * @return 任务task
      */
-    /*public static TimerTask recordLogininfor(final String username, final String status, final String message,
+    public static TimerTask recordLogininfor(final String username, final String status, final String message,
                                              final Object... args) {
         final UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
         final String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
@@ -64,7 +72,7 @@ public class AsyncFactory {
                 SpringUtils.getBean(ISysLogininforService.class).insertLogininfor(logininfor);
             }
         };
-    }*/
+    }
 
     /**
      * 操作日志记录

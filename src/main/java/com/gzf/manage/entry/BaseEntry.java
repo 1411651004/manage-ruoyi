@@ -2,8 +2,10 @@ package com.gzf.manage.entry;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class BaseEntry {
+public class BaseEntry implements Serializable {
     /**
      * 页码
      */
