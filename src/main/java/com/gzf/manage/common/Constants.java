@@ -69,9 +69,28 @@ public class Constants {
      * 令牌前缀
      */
     public static final String TOKEN_PREFIX = "Bearer ";
-
     /**
      * 令牌
      */
     public static final String TOKEN = "token";
+
+    public static final String INSERT_SUCCESS = "新增成功";
+    public static final String UPDATE_SUCCESS = "更新成功";
+    public static final String DELETE_SUCCESS = "删除成功";
+
+    /**
+     * 栏目常量
+     */
+    public static final String CATE_NAME_NOTNULL = "栏目名称不能为空";
+    public static final String CATE_KEY_NOTNULL = "栏目KEY不能为空";
+    public static final String CATE_NAME_EXIST = "栏目名称已存在";
+    public static final String CATE_KEY_EXIST = "栏目key已存在";
+    /**
+     * 模块常量
+     */
+    public static final String MODULE_NAME_NOTNULL = "模块名称不能为空";
+    public static final String MODULE_KEY_NOTNULL = "模块KEY不能为空";
+    public static final String MODULE_NAME_EXIST = "模块名称已存在";
+    public static final String MODULE_KEY_EXIST = "模块key已存在";
+
 }

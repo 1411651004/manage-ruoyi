@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzf.manage.dao.ModuleMapper">
+    <resultMap id="BaseResultMap" type="com.gzf.manage.entry.Module">
+        <id column="module_id" property="moduleId" jdbcType="BIGINT"/>
+        <result column="module_key" property="moduleKey" jdbcType="VARCHAR"/>
+        <result column="module_name" property="moduleName" jdbcType="VARCHAR"/>
+        <result column="module_creater" property="moduleCreater" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="VARCHAR"/>
+        <result column="module_updater" property="moduleUpdater" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        module_id
+        , module_key, module_name, module_creater, create_time, update_time, module_updater
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_module
+        where module_id = #{moduleId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from tb_module
+        where module_id = #{moduleId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.gzf.manage.entry.Module">
+        insert into tb_module (module_id, module_key, module_name,
+                               module_creater, create_time, update_time,
+                               module_updater)
+        values (#{moduleId,jdbcType=BIGINT}, #{moduleKey,jdbcType=VARCHAR}, #{moduleName,jdbcType=VARCHAR},
+                #{moduleCreater,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR},
+                #{moduleUpdater,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.gzf.manage.entry.Module">
+        insert into tb_module
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="moduleId != null and '' != moduleId">
+                module_id,
+            </if>
+            <if test="moduleKey != null and '' != moduleKey">
+                module_key,
+            </if>
+            <if test="moduleName != null and '' != moduleName">
+                module_name,
+            </if>
+            <if test="moduleCreater != null and '' != moduleCreater">
+                module_creater,
+            </if>
+            <if test="createTime != null and '' != createTime">
+                create_time,
+            </if>
+            <if test="updateTime != null and '' != updateTime">
+                update_time,
+            </if>
+            <if test="moduleUpdater != null and '' != moduleUpdater">
+                module_updater,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="moduleId != null and '' != moduleId">
+                #{moduleId,jdbcType=BIGINT},
+            </if>
+            <if test="moduleKey != null and '' != moduleKey">
+                #{moduleKey,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleName != null and '' != moduleName">
+                #{moduleName,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleCreater != null and '' != moduleCreater">
+                #{moduleCreater,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null and '' != createTime">
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null and '' != updateTime">
+                #{updateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleUpdater != null and '' != moduleUpdater">
+                #{moduleUpdater,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gzf.manage.entry.Module">
+        update tb_module
+        <set>
+            <if test="moduleKey != null and '' != moduleKey">
+                module_key = #{moduleKey,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleName != null and '' != moduleName">
+                module_name = #{moduleName,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleCreater != null and '' != moduleCreater">
+                module_creater = #{moduleCreater,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null and '' != createTime">
+                create_time = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime != null and '' != updateTime">
+                update_time = #{updateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleUpdater != null and '' != moduleUpdater">
+                module_updater = #{moduleUpdater,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where module_id = #{moduleId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gzf.manage.entry.Module">
+        update tb_module
+        set module_key     = #{moduleKey,jdbcType=VARCHAR},
+            module_name    = #{moduleName,jdbcType=VARCHAR},
+            module_creater = #{moduleCreater,jdbcType=VARCHAR},
+            create_time    = #{createTime,jdbcType=VARCHAR},
+            update_time    = #{updateTime,jdbcType=VARCHAR},
+            module_updater = #{moduleUpdater,jdbcType=VARCHAR}
+        where module_id = #{moduleId,jdbcType=BIGINT}
+    </update>
+    <select id="queryModuleList" resultType="com.gzf.manage.entry.Module">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_module
+        <where>
+            <if test="moduleKey != null and moduleKey != ''">
+                and module_key = #{moduleKey,jdbcType=VARCHAR}
+            </if>
+            <if test="moduleName != null and moduleName != ''">
+                and module_name = #{moduleName,jdbcType=VARCHAR}
+            </if>
+            <if test="moduleCreater != null and moduleCreater != ''">
+                and module_creater = #{moduleCreater,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and create_time = #{createTime,jdbcType=VARCHAR}
+            </if>
+            <if test="updateTime != null and updateTime != ''">
+                and update_time = #{updateTime,jdbcType=VARCHAR}
+            </if>
+            <if test="moduleUpdater != null and moduleUpdater != ''">
+                and module_updater = #{moduleUpdater,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+    <select id="queryModule" resultType="java.util.HashMap">
+        select module_id moduleId, module_name moduleName, module_key moduleKey
+        from tb_module
+    </select>
+    <select id="checkModuleName" resultType="java.lang.Integer">
+        select count(1)
+        from tb_module
+        where module_name = #{moduleName}
+    </select>
+    <select id="checkModuleKey" resultType="java.lang.Integer">
+        select count(1)
+        from tb_module
+        where module_key = #{moduleKey}
+    </select>
+</mapper>
