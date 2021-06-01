@@ -13,5 +13,5 @@ public class BaseEntry implements Serializable {
     /**
      * 条数
      */
-    private int pageSize = 10;
+    private int pageSize = 100;
 }

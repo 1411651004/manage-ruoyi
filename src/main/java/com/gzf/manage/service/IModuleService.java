@@ -3,6 +3,8 @@ package com.gzf.manage.service;
 import com.gzf.manage.common.AjaxResult;
 import com.gzf.manage.entry.Module;
 
+import java.util.List;
+
 public interface IModuleService {
     /**
      * 查询模块
@@ -31,6 +33,13 @@ public interface IModuleService {
      * @return
      */
     AjaxResult deleteModule(Long moduleId);
+
+    /**
+     * 批量删除模块
+     * @param moduleIds
+     * @return
+     */
+    AjaxResult deleteModuleList(List<Long> moduleIds);
     /**
      * 查询模块下拉框
      * @return

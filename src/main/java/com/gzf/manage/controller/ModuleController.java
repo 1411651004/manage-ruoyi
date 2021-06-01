@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @program: manage
@@ -38,6 +39,7 @@ public class ModuleController {
     public AjaxResult insertAndUpdateModule(@RequestBody Module module) {
         return moduleService.insertAndUpdateModule(module);
     }
+
     @GetMapping("/checkModuleName")
     @Log(title = "检验模块名称是否已存在", businessType = BusinessType.UPDATE)
     @ApiOperation(value = "检验模块名称是否已存在")
@@ -68,8 +70,15 @@ public class ModuleController {
         return moduleService.deleteModule(moduleId);
     }
 
+    @PostMapping("/deleteModuleList")
+    @Log(title = "批量删除模块", businessType = BusinessType.DELETE)
+    @ApiOperation(value = "批量删除模块")
+    public AjaxResult deleteModuleList(@RequestBody List<Long> moduleIds) {
+        return moduleService.deleteModuleList(moduleIds);
+    }
+
     @GetMapping("/queryModuleById")
-    @Log(title = "查询单条模块",businessType = BusinessType.OTHER)
+    @Log(title = "查询单条模块", businessType = BusinessType.OTHER)
     @ApiOperation(value = "查询单条模块")
     public AjaxResult queryModuleById(Long moduleId) {
         return moduleService.queryModuleById(moduleId);

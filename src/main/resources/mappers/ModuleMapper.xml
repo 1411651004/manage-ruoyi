@@ -25,6 +25,14 @@
         from tb_module
         where module_id = #{moduleId,jdbcType=BIGINT}
     </delete>
+    <delete id="deleteModuleList">
+        DELETE FROM
+        tb_module
+        WHERE module_id IN
+        <foreach item="item" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
     <insert id="insert" parameterType="com.gzf.manage.entry.Module">
         insert into tb_module (module_id, module_key, module_name,
                                module_creater, create_time, update_time,

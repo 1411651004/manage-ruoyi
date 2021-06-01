@@ -23,6 +23,13 @@ public interface ModuleMapper {
     List<HashMap<Long, String>> queryModule();
 
     int checkModuleName(String moduleName);
-    
+
     int checkModuleKey(String moduleKey);
+
+    /**
+     * 批量删除模块
+     * @param moduleIds
+     * @return
+     */
+    int deleteModuleList(List<Long> moduleIds);
 }
