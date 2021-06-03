@@ -2,11 +2,15 @@ package com.gzf.manage.entry;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.gzf.manage.utils.JsonLongSerializer;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@Data
+@EqualsAndHashCode(callSuper = true)
 public class Module extends BaseEntry{
     /*模块id*/
-    @JsonSerialize(using = JsonLongSerializer.class )
-    private Long moduleId;
+    //@JsonSerialize(using = JsonLongSerializer.class )
+    private String moduleId;
     /*模块key*/
     private String moduleKey;
     /*模块名称*/
@@ -20,11 +24,11 @@ public class Module extends BaseEntry{
     /*更新人*/
     private String moduleUpdater;
 
-    public Long getModuleId() {
+    public String getModuleId() {
         return moduleId;
     }
 
-    public void setModuleId(Long moduleId) {
+    public void setModuleId(String moduleId) {
         this.moduleId = moduleId;
     }
 

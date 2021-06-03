@@ -43,7 +43,7 @@ public class ModuleServiceImpl implements IModuleService {
     }
 
     @Override
-    public AjaxResult queryModuleById(Long moduleId) {
+    public AjaxResult queryModuleById(String moduleId) {
         return AjaxResult.success(moduleMapper.selectByPrimaryKey(moduleId));
     }
 
@@ -95,7 +95,7 @@ public class ModuleServiceImpl implements IModuleService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public AjaxResult deleteModule(Long moduleId) {
+    public AjaxResult deleteModule(String moduleId) {
         //1、删除模块下的栏目
         cateService.deleteCateByModuleId(moduleId);
         //2、删除模块
@@ -110,15 +110,15 @@ public class ModuleServiceImpl implements IModuleService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public AjaxResult deleteModuleList(List<Long> moduleIds) {
+    public AjaxResult deleteModuleList(List<String> moduleIds) {
         //mybatis-xml中批量删除
         //moduleMapper.deleteModuleList(moduleIds);
-        for (Long temp: moduleIds) {
+        Optional.ofNullable(moduleIds).orElseThrow(() -> new BaseException("未选择模块")).forEach(temp -> {
             //1、删除模块下的栏目
             cateService.deleteCateByModuleId(temp);
             //2、删除模块
             moduleMapper.deleteByPrimaryKey(temp);
-        }
+        });
         return AjaxResult.success(Constants.DELETE_SUCCESS);
     }
 

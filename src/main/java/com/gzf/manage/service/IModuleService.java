@@ -18,7 +18,7 @@ public interface IModuleService {
      * @param moduleId
      * @return
      */
-    AjaxResult queryModuleById(Long moduleId);
+    AjaxResult queryModuleById(String moduleId);
 
     /**
      * 新增或修改模块
@@ -32,14 +32,14 @@ public interface IModuleService {
      * @param moduleId
      * @return
      */
-    AjaxResult deleteModule(Long moduleId);
+    AjaxResult deleteModule(String moduleId);
 
     /**
      * 批量删除模块
      * @param moduleIds
      * @return
      */
-    AjaxResult deleteModuleList(List<Long> moduleIds);
+    AjaxResult deleteModuleList(List<String> moduleIds);
     /**
      * 查询模块下拉框
      * @return

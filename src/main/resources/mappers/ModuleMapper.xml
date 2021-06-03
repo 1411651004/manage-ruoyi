@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.gzf.manage.dao.ModuleMapper">
     <resultMap id="BaseResultMap" type="com.gzf.manage.entry.Module">
-        <id column="module_id" property="moduleId" jdbcType="BIGINT"/>
+        <id column="module_id" property="moduleId" jdbcType="VARCHAR"/>
         <result column="module_key" property="moduleKey" jdbcType="VARCHAR"/>
         <result column="module_name" property="moduleName" jdbcType="VARCHAR"/>
         <result column="module_creater" property="moduleCreater" jdbcType="VARCHAR"/>
@@ -18,12 +18,12 @@
         select
         <include refid="Base_Column_List"/>
         from tb_module
-        where module_id = #{moduleId,jdbcType=BIGINT}
+        where module_id = #{moduleId,jdbcType=VARCHAR}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <delete id="deleteByPrimaryKey">
         delete
         from tb_module
-        where module_id = #{moduleId,jdbcType=BIGINT}
+        where module_id = #{moduleId}
     </delete>
     <delete id="deleteModuleList">
         DELETE FROM
@@ -37,7 +37,7 @@
         insert into tb_module (module_id, module_key, module_name,
                                module_creater, create_time, update_time,
                                module_updater)
-        values (#{moduleId,jdbcType=BIGINT}, #{moduleKey,jdbcType=VARCHAR}, #{moduleName,jdbcType=VARCHAR},
+        values (#{moduleId,jdbcType=VARCHAR}, #{moduleKey,jdbcType=VARCHAR}, #{moduleName,jdbcType=VARCHAR},
                 #{moduleCreater,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR},
                 #{moduleUpdater,jdbcType=VARCHAR})
     </insert>
@@ -68,7 +68,7 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="moduleId != null and '' != moduleId">
-                #{moduleId,jdbcType=BIGINT},
+                #{moduleId,jdbcType=VARCHAR},
             </if>
             <if test="moduleKey != null and '' != moduleKey">
                 #{moduleKey,jdbcType=VARCHAR},
@@ -112,7 +112,7 @@
                 module_updater = #{moduleUpdater,jdbcType=VARCHAR},
             </if>
         </set>
-        where module_id = #{moduleId,jdbcType=BIGINT}
+        where module_id = #{moduleId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.gzf.manage.entry.Module">
         update tb_module
@@ -122,7 +122,7 @@
             create_time    = #{createTime,jdbcType=VARCHAR},
             update_time    = #{updateTime,jdbcType=VARCHAR},
             module_updater = #{moduleUpdater,jdbcType=VARCHAR}
-        where module_id = #{moduleId,jdbcType=BIGINT}
+        where module_id = #{moduleId,jdbcType=VARCHAR}
     </update>
     <select id="queryModuleList" resultType="com.gzf.manage.entry.Module">
         select

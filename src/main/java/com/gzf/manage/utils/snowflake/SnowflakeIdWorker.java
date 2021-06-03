@@ -106,7 +106,7 @@ public class SnowflakeIdWorker {
      *
      * @return SnowflakeId
      */
-    public synchronized long nextId() {
+    public synchronized String nextId() {
         long timestamp = timeGen();
 
         //如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
@@ -134,10 +134,11 @@ public class SnowflakeIdWorker {
         lastTimestamp = timestamp;
 
         //移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - twepoch) << timestampLeftShift) //
+        Long result = ((timestamp - twepoch) << timestampLeftShift) //
                 | (datacenterId << datacenterIdShift) //
                 | (workerId << workerIdShift) //
                 | sequence;
+        return result.toString();
     }
 
     /**
@@ -171,9 +172,9 @@ public class SnowflakeIdWorker {
     public static void main(String[] args) {
         SnowflakeIdWorker idWorker = new SnowflakeIdWorker(0, 0);
         for (int i = 0; i < 1000; i++) {
-            long id = idWorker.nextId();
-            System.out.println(Long.toBinaryString(id));
+            String id = idWorker.nextId();
             System.out.println(id);
+            System.out.println(Long.parseLong(id));
         }
     }
 }

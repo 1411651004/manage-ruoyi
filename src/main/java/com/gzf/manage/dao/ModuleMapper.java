@@ -6,13 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface ModuleMapper {
-    int deleteByPrimaryKey(Long moduleId);
+    int deleteByPrimaryKey(String moduleId);
 
     int insert(Module record);
 
     int insertSelective(Module record);
 
-    Module selectByPrimaryKey(Long moduleId);
+    Module selectByPrimaryKey(String moduleId);
 
     int updateByPrimaryKeySelective(Module record);
 
@@ -20,7 +20,7 @@ public interface ModuleMapper {
 
     List<Module> queryModuleList(Module module);
 
-    List<HashMap<Long, String>> queryModule();
+    List<HashMap<String, String>> queryModule();
 
     int checkModuleName(String moduleName);
 
@@ -31,5 +31,5 @@ public interface ModuleMapper {
      * @param moduleIds
      * @return
      */
-    int deleteModuleList(List<Long> moduleIds);
+    int deleteModuleList(List<String> moduleIds);
 }
