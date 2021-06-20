@@ -28,44 +28,46 @@
     </select>
     <select id="queryCateList" resultType="com.gzf.manage.entry.Cate">
         select
-        <include refid="Base_Column_List"/>
-        from tb_cate
-        <where>
+        c.cate_id cateId, c.module_id moduleId,m.module_name moduleName, c.cate_name cateName,
+               c.cate_url cateUrl, c.cate_desc cateDesc, c.cate_icon cateIcon,
+               c.is_filled isFilled, c.update_time updateTime,c.cate_creater cateCreater, c.create_time createrTime,
+        c.cate_updater cateUpdater, c.cate_key cateKey
+        from tb_cate c,tb_module m
+        where
+            c.module_id = m.module_id
             <if test="moduleId != null and '' != moduleId">
-                and module_id = #{moduleId,jdbcType=VARCHAR}
+                and c.module_id = #{moduleId,jdbcType=VARCHAR}
             </if>
             <if test="cateName != null and '' != cateName">
-                and cate_name = #{cateName,jdbcType=VARCHAR}
+                and c.cate_name = #{cateName,jdbcType=VARCHAR}
             </if>
             <if test="cateUrl != null and '' != cateUrl">
-                and cate_url = #{cateUrl,jdbcType=VARCHAR}
+                and c.cate_url = #{cateUrl,jdbcType=VARCHAR}
             </if>
             <if test="cateDesc != null and '' != cateDesc">
-                and cate_desc = #{cateDesc,jdbcType=VARCHAR}
+                and c.cate_desc = #{cateDesc,jdbcType=VARCHAR}
             </if>
             <if test="cateIcon != null and '' != cateIcon">
-                and cate_icon = #{cateIcon,jdbcType=VARCHAR}
+                and c.cate_icon = #{cateIcon,jdbcType=VARCHAR}
             </if>
             <if test="isFilled != null and '' != isFilled">
-                and is_filled = #{isFilled,jdbcType=INTEGER}
+                and c.is_filled = #{isFilled,jdbcType=INTEGER}
             </if>
             <if test="updateTime != null and '' != updateTime">
-                and update_time = #{updateTime,jdbcType=VARCHAR}
+                and c.update_time = #{updateTime,jdbcType=VARCHAR}
             </if>
             <if test="cateCreater != null and '' != cateCreater">
-                and cate_creater = #{cateCreater,jdbcType=VARCHAR}
+                and c.cate_creater = #{cateCreater,jdbcType=VARCHAR}
             </if>
             <if test="createTime != null and '' != createTime">
-                and create_time = #{createTime,jdbcType=VARCHAR}
+                and c.create_time = #{createTime,jdbcType=VARCHAR}
             </if>
             <if test="cateUpdater != null and '' != cateUpdater">
-                and cate_updater = #{cateUpdater,jdbcType=VARCHAR}
+                and c.cate_updater = #{cateUpdater,jdbcType=VARCHAR}
             </if>
             <if test="cateKey != null and '' != cateKey">
-                and cate_key = #{cateKey,jdbcType=VARCHAR}
+                and c.cate_key = #{cateKey,jdbcType=VARCHAR}
             </if>
-        </where>
-
     </select>
     <select id="checkCateName" resultType="java.lang.Integer">
         select count(1)

@@ -52,7 +52,7 @@ public class CateController {
     @Log(title = "检验栏目名称是否已存在", businessType = BusinessType.UPDATE)
     @ApiOperation(value = "检验栏目名称是否已存在")
     public AjaxResult checkCateName(@ApiParam(name = "cateName", value = "栏目名称")
-                                        @RequestBody CateVo cateVo) {
+                                    @RequestBody CateVo cateVo) {
         return cateService.checkCateName(cateVo.getCateName());
     }
 
@@ -60,7 +60,7 @@ public class CateController {
     @Log(title = "检验栏目Key是否已存在", businessType = BusinessType.UPDATE)
     @ApiOperation(value = "检验栏目Key是否已存在")
     public AjaxResult checkCateKey(@ApiParam(name = "cateKey", value = "栏目key")
-                                       @RequestBody CateVo cateVo) {
+                                   @RequestBody CateVo cateVo) {
         return cateService.checkCateKey(cateVo.getCateKey());
     }
 
@@ -75,7 +75,7 @@ public class CateController {
     @Log(title = "根据模块id查询所属栏目下拉框", businessType = BusinessType.OTHER)
     @ApiOperation(value = "根据模块id查询所属栏目下拉框")
     public AjaxResult queryCateByModuleId(@ApiParam(name = "moduleId", value = "模块id")
-                                              @RequestBody CateVo cateVo) {
+                                          @RequestBody CateVo cateVo) {
         return cateService.queryCateByModuleId(cateVo.getModuleId());
     }
 
@@ -83,13 +83,13 @@ public class CateController {
     @Log(title = "删除栏目", businessType = BusinessType.DELETE)
     @ApiOperation(value = "删除栏目")
     public AjaxResult deleteCate(@ApiParam(name = "cateId", value = "栏目id")
-                                     @RequestBody CateVo cateVo) {
+                                 @RequestBody CateVo cateVo) {
         return cateService.deleteCate(cateVo.getCateId());
 
     }
 
     @GetMapping("/queryCateById")
-    @Log(title = "查询单条栏目",businessType = BusinessType.OTHER)
+    @Log(title = "查询单条栏目", businessType = BusinessType.OTHER)
     @ApiOperation(value = "查询单条栏目")
     public AjaxResult queryCateById(String moduleId) {
         return cateService.queryCateById(moduleId);

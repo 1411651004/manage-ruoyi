@@ -13,6 +13,8 @@ public class Cate extends BaseEntry{
     private String cateId;
     /*模块id*/
     private String moduleId;
+    /*模块名称*/
+    private String moduleName;
     /*栏目key*/
     private String cateKey;
     /*栏目名称*/
