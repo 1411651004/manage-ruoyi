@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gzf.manage.dao.CateMapper">
+    <resultMap id="BaseResultMap" type="com.gzf.manage.entry.Cate">
+        <id column="cate_id" property="cateId" jdbcType="VARCHAR"/>
+        <result column="module_id" property="moduleId" jdbcType="VARCHAR"/>
+        <result column="cate_name" property="cateName" jdbcType="VARCHAR"/>
+        <result column="cate_url" property="cateUrl" jdbcType="VARCHAR"/>
+        <result column="cate_desc" property="cateDesc" jdbcType="VARCHAR"/>
+        <result column="cate_icon" property="cateIcon" jdbcType="VARCHAR"/>
+        <result column="is_filled" property="isFilled" jdbcType="INTEGER"/>
+        <result column="update_time" property="updateTime" jdbcType="VARCHAR"/>
+        <result column="cate_creater" property="cateCreater" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="cate_updater" property="cateUpdater" jdbcType="VARCHAR"/>
+        <result column="cate_key" property="cateKey" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        cate_id
+        , module_id, cate_name, cate_url, cate_desc, cate_icon, is_filled, update_time,
+    cate_creater, create_time, cate_updater, cate_key
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tb_cate
+        where cate_id = #{cateId}
+    </select>
+    <select id="queryCateList" resultType="com.gzf.manage.entry.Cate">
+        select
+        c.cate_id cateId, c.module_id moduleId,m.module_name moduleName, c.cate_name cateName,
+               c.cate_url cateUrl, c.cate_desc cateDesc, c.cate_icon cateIcon,
+               c.is_filled isFilled, c.update_time updateTime,c.cate_creater cateCreater, c.create_time createrTime,
+        c.cate_updater cateUpdater, c.cate_key cateKey
+        from tb_cate c,tb_module m
+        where
+            c.module_id = m.module_id
+            <if test="moduleId != null and '' != moduleId">
+                and c.module_id = #{moduleId,jdbcType=VARCHAR}
+            </if>
+            <if test="cateName != null and '' != cateName">
+                and c.cate_name = #{cateName,jdbcType=VARCHAR}
+            </if>
+            <if test="cateUrl != null and '' != cateUrl">
+                and c.cate_url = #{cateUrl,jdbcType=VARCHAR}
+            </if>
+            <if test="cateDesc != null and '' != cateDesc">
+                and c.cate_desc = #{cateDesc,jdbcType=VARCHAR}
+            </if>
+            <if test="cateIcon != null and '' != cateIcon">
+                and c.cate_icon = #{cateIcon,jdbcType=VARCHAR}
+            </if>
+            <if test="isFilled != null and '' != isFilled">
+                and c.is_filled = #{isFilled,jdbcType=INTEGER}
+            </if>
+            <if test="updateTime != null and '' != updateTime">
+                and c.update_time = #{updateTime,jdbcType=VARCHAR}
+            </if>
+            <if test="cateCreater != null and '' != cateCreater">
+                and c.cate_creater = #{cateCreater,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null and '' != createTime">
+                and c.create_time = #{createTime,jdbcType=VARCHAR}
+            </if>
+            <if test="cateUpdater != null and '' != cateUpdater">
+                and c.cate_updater = #{cateUpdater,jdbcType=VARCHAR}
+            </if>
+            <if test="cateKey != null and '' != cateKey">
+                and c.cate_key = #{cateKey,jdbcType=VARCHAR}
+            </if>
+    </select>
+    <select id="checkCateName" resultType="java.lang.Integer">
+        select count(1)
+        from tb_cate
+        where cate_name = #{cateName}
+    </select>
+    <select id="checkCateKey" resultType="java.lang.Integer">
+        select count(1)
+        from tb_cate
+        where cate_key = #{cateKey}
+    </select>
+    <select id="queryCate" resultType="com.gzf.manage.entry.Cate">
+        select cate_id cateId,cate_name cateName,cate_key cateKey
+        from tb_cate
+    </select>
+    <select id="queryCateByModuleId" resultType="com.gzf.manage.entry.Cate">
+        select cate_id cateId,cate_name cateName,cate_key cateKey
+        from tb_cate
+        where module_id = #{moduleId}
+    </select>
+    <delete id="deleteByPrimaryKey">
+        delete
+        from tb_cate
+        where cate_id = #{cateId}
+    </delete>
+    <delete id="deleteCateByModuleId">
+        delete
+        from tb_cate
+        where module_id = #{moduleId}
+    </delete>
+    <insert id="insert" parameterType="com.gzf.manage.entry.Cate">
+        insert into tb_cate (cate_id, module_id, cate_name,
+                             cate_url, cate_desc, cate_icon,
+                             is_filled, update_time, cate_creater,
+                             create_time, cate_updater, cate_key)
+        values (#{cateId,jdbcType=VARCHAR}, #{moduleId,jdbcType=VARCHAR}, #{cateName,jdbcType=VARCHAR},
+                #{cateUrl,jdbcType=VARCHAR}, #{cateDesc,jdbcType=VARCHAR}, #{cateIcon,jdbcType=VARCHAR},
+                #{isFilled,jdbcType=INTEGER}, #{updateTime,jdbcType=VARCHAR}, #{cateCreater,jdbcType=VARCHAR},
+                #{createTime,jdbcType=VARCHAR}, #{cateUpdater,jdbcType=VARCHAR}, #{cateKey,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.gzf.manage.entry.Cate">
+        insert into tb_cate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cateId != null">
+                cate_id,
+            </if>
+            <if test="moduleId != null">
+                module_id,
+            </if>
+            <if test="cateName != null">
+                cate_name,
+            </if>
+            <if test="cateUrl != null">
+                cate_url,
+            </if>
+            <if test="cateDesc != null">
+                cate_desc,
+            </if>
+            <if test="cateIcon != null">
+                cate_icon,
+            </if>
+            <if test="isFilled != null">
+                is_filled,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="cateCreater != null">
+                cate_creater,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="cateUpdater != null">
+                cate_updater,
+            </if>
+            <if test="cateKey != null">
+                cate_key,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cateId != null">
+                #{cateId,jdbcType=VARCHAR},
+            </if>
+            <if test="moduleId != null">
+                #{moduleId,jdbcType=VARCHAR},
+            </if>
+            <if test="cateName != null">
+                #{cateName,jdbcType=VARCHAR},
+            </if>
+            <if test="cateUrl != null">
+                #{cateUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="cateDesc != null">
+                #{cateDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="cateIcon != null">
+                #{cateIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="isFilled != null">
+                #{isFilled,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="cateCreater != null">
+                #{cateCreater,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="cateUpdater != null">
+                #{cateUpdater,jdbcType=VARCHAR},
+            </if>
+            <if test="cateKey != null">
+                #{cateKey,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.gzf.manage.entry.Cate">
+        update tb_cate
+        <set>
+            <if test="moduleId != null">
+                module_id = #{moduleId,jdbcType=VARCHAR},
+            </if>
+            <if test="cateName != null">
+                cate_name = #{cateName,jdbcType=VARCHAR},
+            </if>
+            <if test="cateUrl != null">
+                cate_url = #{cateUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="cateDesc != null">
+                cate_desc = #{cateDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="cateIcon != null">
+                cate_icon = #{cateIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="isFilled != null">
+                is_filled = #{isFilled,jdbcType=INTEGER},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=VARCHAR},
+            </if>
+            <if test="cateCreater != null">
+                cate_creater = #{cateCreater,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=VARCHAR},
+            </if>
+            <if test="cateUpdater != null">
+                cate_updater = #{cateUpdater,jdbcType=VARCHAR},
+            </if>
+            <if test="cateKey != null">
+                cate_key = #{cateKey,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where cate_id = #{cateId,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.gzf.manage.entry.Cate">
+        update tb_cate
+        set module_id    = #{moduleId,jdbcType=VARCHAR},
+            cate_name    = #{cateName,jdbcType=VARCHAR},
+            cate_url     = #{cateUrl,jdbcType=VARCHAR},
+            cate_desc    = #{cateDesc,jdbcType=VARCHAR},
+            cate_icon    = #{cateIcon,jdbcType=VARCHAR},
+            is_filled    = #{isFilled,jdbcType=INTEGER},
+            update_time  = #{updateTime,jdbcType=VARCHAR},
+            cate_creater = #{cateCreater,jdbcType=VARCHAR},
+            create_time  = #{createTime,jdbcType=VARCHAR},
+            cate_updater = #{cateUpdater,jdbcType=VARCHAR},
+            cate_key     = #{cateKey,jdbcType=VARCHAR}
+        where cate_id = #{cateId,jdbcType=VARCHAR}
+    </update>
+</mapper>

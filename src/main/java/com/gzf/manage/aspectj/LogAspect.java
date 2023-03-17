@@ -88,8 +88,8 @@ public class LogAspect {
             // 请求的地址
             String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
             operLog.setOperIp(ip);
-            // 返回参数
-            operLog.setJsonResult(JSON.toJSONString(jsonResult));
+            // 返回参数（防止过长，进行截取）
+            operLog.setJsonResult(StringUtils.substring(JSON.toJSONString(jsonResult), 0, 2000));
 
             operLog.setOperUrl(ServletUtils.getRequest().getRequestURI());
             if (loginUser != null) {
