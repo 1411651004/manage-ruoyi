@@ -1,6 +1,6 @@
 package com.gzf.manage.service.impl;
 
-import com.gzf.manage.dao.SysUserMapper;
+import com.gzf.manage.mapper.SysUserMapper;
 import com.gzf.manage.entry.SysUser;
 import com.gzf.manage.service.ISysUserService;
 import org.springframework.beans.factory.annotation.Autowired;

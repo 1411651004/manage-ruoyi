@@ -3,7 +3,7 @@ package com.gzf.manage.security.usersecurity;
 import com.gzf.manage.common.Constants;
 import com.gzf.manage.exception.BaseException;
 import com.gzf.manage.exception.CaptchaExpireException;
-import com.gzf.manage.exception.CustomException;
+import com.gzf.manage.exception.ServiceException;
 import com.gzf.manage.manager.AsyncManager;
 import com.gzf.manage.manager.factory.AsyncFactory;
 import com.gzf.manage.security.usermodel.LoginUser;
@@ -72,7 +72,7 @@ public class SysLoginService {
                 throw new BaseException("user.password.not.match", (Object[]) null);
             } else {
                 //AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_FAIL, e.getMessage()));
-                throw new CustomException(e.getMessage());
+                throw new ServiceException(e.getMessage());
             }
         }
         AsyncManager.me().execute(AsyncFactory.recordLogininfor(username, Constants.LOGIN_SUCCESS,

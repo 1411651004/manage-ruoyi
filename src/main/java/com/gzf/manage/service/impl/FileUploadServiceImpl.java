@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gzf.manage.common.AjaxResult;
 import com.gzf.manage.common.Constants;
-import com.gzf.manage.dao.FileUploadMapper;
+import com.gzf.manage.mapper.FileUploadMapper;
 import com.gzf.manage.entry.FileUpload;
 import com.gzf.manage.exception.BaseException;
 import com.gzf.manage.service.IFileUploadService;

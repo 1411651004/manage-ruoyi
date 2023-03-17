@@ -41,8 +41,8 @@ public class GlobalExceptionHandler {
     /**
      * 业务异常
      */
-    @ExceptionHandler(CustomException.class)
-    public AjaxResult businessException(CustomException e) {
+    @ExceptionHandler(ServiceException.class)
+    public AjaxResult businessException(ServiceException e) {
         if (StringUtils.isNull(e.getCode())) {
             return AjaxResult.error(e.getMessage());
         }

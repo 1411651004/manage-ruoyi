@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class SysBtnCol extends BaseEntry{
+public class SysBtnCol extends BaseEntity {
     private Integer id;
 
     private String sysName;

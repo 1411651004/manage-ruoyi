@@ -7,10 +7,8 @@ import com.gzf.manage.enums.BusinessType;
 import com.gzf.manage.service.ISysOperLogService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ProgramName: manage
@@ -20,27 +18,33 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date: 2021/1/18 14:49
  **/
 @RestController
-@RequestMapping("/operlog")
+@RequestMapping("/monitor/operlog")
 public class SysOperLogController {
 
     @Autowired
     ISysOperLogService sysOperLogService;
 
-    @GetMapping("/queryOperLogList")
+    //@GetMapping("/queryOperLogList")
+    @PreAuthorize("@ss.hasPermi('monitor:operlog:list')")
+    @GetMapping("/list")
     @ApiOperation(value = "查询系统操作日志列表")
     public AjaxResult queryOperLogList(SysOperLog operLog) {
         return sysOperLogService.selectOperLogList(operLog);
     }
 
-    @PostMapping("/removeOperLog")
+    //@PostMapping("/removeOperLog")
+    @PreAuthorize("@ss.hasPermi('monitor:operlog:remove')")
+    @DeleteMapping("/{operIds}")
     @ApiOperation(value = "批量删除系统操作日志")
     @Log(title = "操作日志", businessType = BusinessType.DELETE)
-    public AjaxResult removeOperLog(Long[] operIds) {
+    public AjaxResult removeOperLog(@PathVariable Long[] operIds) {
         int row = sysOperLogService.deleteOperLogByIds(operIds);
         return row > 0 ? AjaxResult.success() : AjaxResult.error();
     }
 
-    @PostMapping("/cleanOperLog")
+    //@PostMapping("/cleanOperLog")
+    @PreAuthorize("@ss.hasPermi('monitor:operlog:remove')")
+    @DeleteMapping("/clean")
     @ApiOperation(value = "清空系统操作日志")
     @Log(title = "操作日志", businessType = BusinessType.CLEAN)
     public AjaxResult cleanOperLog() {

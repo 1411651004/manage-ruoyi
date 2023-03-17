@@ -1,7 +1,6 @@
-package com.gzf.manage.dao;
+package com.gzf.manage.mapper;
 
 import com.gzf.manage.entry.FileUpload;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 

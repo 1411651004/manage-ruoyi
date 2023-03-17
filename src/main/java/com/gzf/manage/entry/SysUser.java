@@ -2,6 +2,7 @@ package com.gzf.manage.entry;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.gzf.manage.utils.xss.Xss;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -9,8 +10,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
-public class SysUser extends BaseEntry{
+public class SysUser extends BaseEntity {
     /** 用户ID */
     //@Excel(name = "用户序号", cellType = ColumnType.NUMERIC, prompt = "用户编号")
     private Long userId;
@@ -65,15 +67,20 @@ public class SysUser extends BaseEntry{
     //@Excel(name = "最后登录时间", width = 30, dateFormat = "yyyy-MM-dd HH:mm:ss", type = Type.EXPORT)
     private Date loginDate;
 
-    private String createBy;
+    /** 部门对象 */
+    private SysDept dept;
 
-    private Date createTime;
+    /** 角色对象 */
+    private List<SysRole> roles;
 
-    private String updateBy;
+    /** 角色组 */
+    private Long[] roleIds;
 
-    private Date updateTime;
+    /** 岗位组 */
+    private Long[] postIds;
 
-    private String remark;
+    /** 角色ID */
+    private Long roleId;
 
     public SysUser()
     {
@@ -114,6 +121,7 @@ public class SysUser extends BaseEntry{
         this.deptId = deptId;
     }
 
+    @Xss(message = "用户昵称不能包含脚本字符")
     @Size(min = 0, max = 30, message = "用户昵称长度不能超过30个字符")
     public String getNickName()
     {
@@ -125,6 +133,7 @@ public class SysUser extends BaseEntry{
         this.nickName = nickName;
     }
 
+    @Xss(message = "用户账号不能包含脚本字符")
     @NotBlank(message = "用户账号不能为空")
     @Size(min = 0, max = 30, message = "用户账号长度不能超过30个字符")
     public String getUserName()
@@ -242,46 +251,6 @@ public class SysUser extends BaseEntry{
         this.loginDate = loginDate;
     }
 
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy == null ? null : createBy.trim();
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateBy() {
-        return updateBy;
-    }
-
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy == null ? null : updateBy.trim();
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
-    }
-
     public String getUserType() {
         return userType;
     }
@@ -290,9 +259,59 @@ public class SysUser extends BaseEntry{
         this.userType = userType;
     }
 
+    public SysDept getDept()
+    {
+        return dept;
+    }
+
+    public void setDept(SysDept dept)
+    {
+        this.dept = dept;
+    }
+
+    public List<SysRole> getRoles()
+    {
+        return roles;
+    }
+
+    public void setRoles(List<SysRole> roles)
+    {
+        this.roles = roles;
+    }
+
+    public Long[] getRoleIds()
+    {
+        return roleIds;
+    }
+
+    public void setRoleIds(Long[] roleIds)
+    {
+        this.roleIds = roleIds;
+    }
+
+    public Long[] getPostIds()
+    {
+        return postIds;
+    }
+
+    public void setPostIds(Long[] postIds)
+    {
+        this.postIds = postIds;
+    }
+
+    public Long getRoleId()
+    {
+        return roleId;
+    }
+
+    public void setRoleId(Long roleId)
+    {
+        this.roleId = roleId;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
+        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
                 .append("userId", getUserId())
                 .append("deptId", getDeptId())
                 .append("userName", getUserName())
@@ -312,6 +331,7 @@ public class SysUser extends BaseEntry{
                 .append("updateBy", getUpdateBy())
                 .append("updateTime", getUpdateTime())
                 .append("remark", getRemark())
+                .append("dept", getDept())
                 .toString();
     }
 }

@@ -72,7 +72,7 @@ public class TokenService {
      * 设置用户身份信息
      */
     public void setLoginUser(LoginUser loginUser) {
-        if (StringUtils.isNotNull(loginUser) && StringUtils.isNotEmpty(loginUser.getUuid())) {
+        if (StringUtils.isNotNull(loginUser) && StringUtils.isNotEmpty(loginUser.getToken())) {
             refreshToken(loginUser);
         }
     }
@@ -95,13 +95,13 @@ public class TokenService {
      */
     public String createToken(LoginUser loginUser) {
         //生成用户唯一标识
-        String uuid = IdUtils.fastUUID();
-        loginUser.setUuid(uuid);
+        String token = IdUtils.fastUUID();
+        loginUser.setToken(token);
         setUserAgent(loginUser);
         refreshToken(loginUser);
 
         Map<String, Object> claims = new HashMap<>();
-        claims.put(Constants.LOGIN_USER_KEY, uuid);
+        claims.put(Constants.LOGIN_USER_KEY, token);
         return createToken(claims);
     }
 
@@ -127,8 +127,8 @@ public class TokenService {
     public void refreshToken(LoginUser loginUser) {
         loginUser.setLoginTime(System.currentTimeMillis());
         loginUser.setExpireTime(loginUser.getLoginTime() + expireTime * MILLIS_MINUTE);
-        // 根据uuid将loginUser缓存
-        String userKey = getTokenKey(loginUser.getUuid());
+        // 根据token将loginUser缓存
+        String userKey = getTokenKey(loginUser.getToken());
         redisCache.setCacheObject(userKey, loginUser, expireTime, TimeUnit.MINUTES);
     }
 

@@ -8,7 +8,7 @@ import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SysOperLog extends BaseEntry{
+public class SysOperLog extends BaseEntity {
     /** 日志主键 */
     private Long operId;
 

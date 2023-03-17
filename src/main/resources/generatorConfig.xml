@@ -54,7 +54,7 @@
         <!-- 指定mapper接口生成的位置
          targetPackage、targetProject同javaModelGenerator中作用一样
          -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.gzf.manage.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.gzf.manage.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 

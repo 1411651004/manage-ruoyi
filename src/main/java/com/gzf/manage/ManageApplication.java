@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-@EnableSwagger2
-@MapperScan({"com.gzf.manage.dao*"})
+@MapperScan({"com.gzf.manage.mapper"})
 public class ManageApplication {
 
     public static void main(String[] args) {

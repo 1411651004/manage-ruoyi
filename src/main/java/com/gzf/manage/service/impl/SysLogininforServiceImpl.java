@@ -3,7 +3,7 @@ package com.gzf.manage.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gzf.manage.common.AjaxResult;
-import com.gzf.manage.dao.SysLogininforMapper;
+import com.gzf.manage.mapper.SysLogininforMapper;
 import com.gzf.manage.entry.SysLogininfor;
 import com.gzf.manage.service.ISysLogininforService;
 import org.springframework.beans.factory.annotation.Autowired;

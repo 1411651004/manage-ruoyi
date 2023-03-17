@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SysLogininfor extends BaseEntry{
+public class SysLogininfor extends BaseEntity {
     /** ID */
     private Long infoId;
     /** 用户账号 */

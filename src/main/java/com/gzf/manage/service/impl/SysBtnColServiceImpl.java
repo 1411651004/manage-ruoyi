@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gzf.manage.annotation.Log;
 import com.gzf.manage.common.AjaxResult;
-import com.gzf.manage.dao.SysBtnColMapper;
+import com.gzf.manage.mapper.SysBtnColMapper;
 import com.gzf.manage.entry.SysBtnCol;
 import com.gzf.manage.enums.BusinessType;
 import com.gzf.manage.exception.BaseException;

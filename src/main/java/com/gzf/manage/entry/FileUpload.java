@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class FileUpload extends BaseEntry{
+public class FileUpload extends BaseEntity {
     private Integer id;
 
     private String fileName;

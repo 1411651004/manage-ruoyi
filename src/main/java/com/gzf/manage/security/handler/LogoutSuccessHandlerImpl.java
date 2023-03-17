@@ -39,7 +39,7 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler {
         if (StringUtils.isNotNull(loginUser)) {
             String userName = loginUser.getUsername();
             // 删除用户缓存记录
-            tokenService.delLoginUser(loginUser.getUuid());
+            tokenService.delLoginUser(loginUser.getToken());
             //TODO: 记录用户退出日志
             //AsyncManager.me().execute(AsyncFactory.recordLogininfor(userName, Constants.LOGOUT, "退出成功"));
         }

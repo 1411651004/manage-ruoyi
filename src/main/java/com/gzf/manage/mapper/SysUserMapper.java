@@ -1,4 +1,4 @@
-package com.gzf.manage.dao;
+package com.gzf.manage.mapper;
 
 import com.gzf.manage.entry.SysUser;
 

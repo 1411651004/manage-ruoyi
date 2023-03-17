@@ -3,7 +3,7 @@ package com.gzf.manage.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.gzf.manage.common.AjaxResult;
-import com.gzf.manage.dao.SysOperLogMapper;
+import com.gzf.manage.mapper.SysOperLogMapper;
 import com.gzf.manage.entry.SysOperLog;
 import com.gzf.manage.service.ISysOperLogService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gzf.manage.dao.SysOperLogMapper">
+<mapper namespace="com.gzf.manage.mapper.SysOperLogMapper">
   <resultMap id="BaseResultMap" type="com.gzf.manage.entry.SysOperLog">
     <id column="oper_id" jdbcType="BIGINT" property="operId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
