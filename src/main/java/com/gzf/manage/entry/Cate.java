@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class Cate extends BaseEntry{
+public class Cate{
     /*栏目id*/
     //@JsonSerialize(using = JsonLongSerializer.class )
     private String cateId;
